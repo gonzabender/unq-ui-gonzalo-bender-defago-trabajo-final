@@ -1,6 +1,6 @@
 import Axios from "axios";
 const API_URL = `https://preguntados-api.vercel.app/api`;
-
+const post = (url,body,config) => Axios.post(url,body,config).then(response => response)
 
 async function getQuestion(dif) {
   await Axios.get(`${API_URL}/${dif}`)
@@ -39,14 +39,10 @@ const questionByDifficulty = async (dif) => {
       }
 }
 
-const answerQuestion = async () => {
-  try {
-    const response = await Axios.post(`${API_URL}/questions?difficulty${dif}`,{});
-    return response.data;
-  } catch {
-    return null;
-  }
-}
+const answerQuestion = (questionId, option) => post(`${API_URL}/answer`, { "questionId": `${questionId}`, "option": `${option}` })
+   
+
+
 
 
 const Api = {
@@ -54,6 +50,7 @@ const Api = {
   getQuestion,
   getQuestions,
   questionByDifficulty,
-  getDifficulties
+  getDifficulties,
+  answerQuestion
 };
 export default Api;

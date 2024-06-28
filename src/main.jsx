@@ -5,7 +5,7 @@ import './index.css'
 import Question from './containers/question/question.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <>
     <App />
-  </React.StrictMode>,
+  </>,
 )

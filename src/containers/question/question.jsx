@@ -1,48 +1,74 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import Api from "../../Api";
 import { useNavigate, useParams } from "react-router-dom";
 
-function Question(){
-const [preguntas, setPreguntas] = useState([]);
+function Question() {
+  const [preguntas, setPreguntas] = useState([]);
+  const [completed, setCompleted] = useState(false)
+  const navigate = useNavigate();
+  const params = useParams();
 
-    const navigate = useNavigate()
-    const params = useParams()
-  
-    useEffect(() => {
-    getAQuestion();
-  }, []);
-
-
+  useEffect(() => {
+    const a = getAQuestion();
+    console.log(a)
+  }, [completed]);
 
   async function getAQuestion() {
     try {
       const response = await Api.questionByDifficulty(`${params.difficulty}`);
       setPreguntas(response);
-      console.log(response); 
+      console.log(response);
     } catch (error) {
       console.error("Error fetching question:", error);
     }
   }
 
+  const sendAnswer = (questionId, option) => {
+    Api.answerQuestion(questionId, option)
+    .then((response) => handleResponse(response.data))
+    .catch((response) => "Error" + response)
+  }
+
+  const handleResponse = (response) => {
+    response.answer == true && 
+    (console.log("Respuesta correcta"),  setCompleted(!completed))
+  }
 
   return (
-     <>
+    <>
       <div className="container">
-      <p className="title">
-         {preguntas.length > 0 ? preguntas[0].question : "Loading"}
+        <p className="title">
+          {preguntas.length > 0 ? preguntas[0].question : "Loading"}
         </p>
-        <p>{"Difficulty: " } {`${params.difficulty}`}</p>
-      <div className="preguntas">
-      <button>{preguntas[0]?.option1}</button>
-      <button>{preguntas[0]?.option2}</button>
-      <button>{preguntas[0]?.option3}</button>
-      <button>{preguntas[0]?.option4}</button>
-
-          
-        
+        <p>
+          {"Difficulty: "} {`${params.difficulty}`}
+        </p>
+        <div className="preguntas">
+          <button
+            onClick={() => {
+              sendAnswer(`${preguntas[0].id}`,`option1`)
+            }}
+          >
+            {preguntas[0]?.option1}
+          </button>
+          <button onClick={() => {
+              sendAnswer(`${preguntas[0].id}`,`option2`)
+            }}>
+            {preguntas[0]?.option2}
+          </button>
+          <button onClick={() => {
+              sendAnswer(`${preguntas[0].id}`,`option3`)
+            }}>
+            {preguntas[0]?.option3}
+          </button>
+          <button onClick={() => {
+              sendAnswer(`${preguntas[0].id}`,`option4`)
+            }}>
+            {preguntas[0]?.option4}
+          </button>
+        </div>
       </div>
-    </div> 
-    <button onClick={() => navigate("/")} >Go back</button>
+      <button onClick={() => navigate("/")}>Go back</button>
     </>
   );
 }
