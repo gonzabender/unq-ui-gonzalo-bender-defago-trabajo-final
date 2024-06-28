@@ -32,7 +32,7 @@ const getDifficulties = async () => {
 
 const questionByDifficulty = async (dif) => {
     try {
-        const response = await Axios.get(`${API_URL}/questions?difficulty${dif}`);
+        const response = await Axios.get(`${API_URL}/questions?difficulty=${dif}`);
         return response.data;
       } catch {
         return null;

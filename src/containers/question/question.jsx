@@ -6,15 +6,16 @@ function Question() {
   const [preguntas, setPreguntas] = useState([]);
   const [completed, setCompleted] = useState(false)
   const [correct, setCorrect] = useState("")
-  
+  const [end, setEnd] = useState(false)
   const navigate = useNavigate();
   const params = useParams();
 
   useEffect(() => {
-    
+    setEnd(false)
     getAQuestion();
   }, [completed]);
 
+  
   async function getAQuestion() {
     try {
       const response = await Api.questionByDifficulty(`${params.difficulty}`);
@@ -34,9 +35,7 @@ function Question() {
 
   const handleResponse = (response, option) => {
     response.answer == true && 
-    (setCorrect(option), setTimeout(() => {
-      setCompleted(!completed);
-    }, 700))
+    (setCorrect(option) , setEnd(true), setTimeout(() => {setCompleted(!completed);}, 700))
   }
 
   return (
@@ -49,7 +48,7 @@ function Question() {
           {"Difficulty: "} {`${params.difficulty}`}
         </p>
         <div className="preguntas">
-          <button style={"option1" == correct ? {background:"green"} : {}}
+          <button style={"option1" == correct && end ? {background:"green"} : end == true ? {background:"red"}: {}}
             onClick={() => {
               sendAnswer(`${preguntas[0].id}`,`option1`)
             }}
@@ -57,19 +56,19 @@ function Question() {
             {preguntas[0]?.option1}
           </button>
           <button 
-          style={"option2" == correct ? {background:"green"} : {}}
+          style={"option2" == correct && end ? {background:"green"} : end == true ? {background:"red"}: {}}
           onClick={() => {
               sendAnswer(`${preguntas[0].id}`,`option2`)
             }}>
             {preguntas[0]?.option2}
           </button>
-          <button style={"option3" == correct ? {background:"green"} : {}}
+          <button style={"option3" == correct && end ? {background:"green"} : end == true ? {background:"red"}: {}}
               onClick={() => {
               sendAnswer(`${preguntas[0].id}`,`option3`)
             }}>
             {preguntas[0]?.option3}
           </button>
-          <button style={"option4" == correct ? {background:"green"} : {}}
+          <button style={"option4" == correct && end ? {background:"green"} : end == true ? {background:"red"}: {}}
           onClick={() => {
               sendAnswer(`${preguntas[0].id}`,`option4`)
             }}>
