@@ -14,7 +14,7 @@ async function getQuestion(dif) {
 
 const getQuestions = async (dif) => {
   try {
-    const response = await Axios.get(`${API_URL}/${dif}`);
+    const response = await Axios.get(`${API_URL}/${dif}`)
     return response.data;
   } catch {
     return null;

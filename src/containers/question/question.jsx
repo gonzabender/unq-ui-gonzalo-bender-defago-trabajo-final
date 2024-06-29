@@ -3,27 +3,27 @@ import Api from "../../Api";
 import { useNavigate, useParams } from "react-router-dom";
 
 function Question() {
-  const [preguntas, setPreguntas] = useState([]);
+  const [preguntas, setPreguntas] = useState([])
   const [completed, setCompleted] = useState(false)
   const [correct, setCorrect] = useState("")
   const [end, setEnd] = useState(false)
-  const navigate = useNavigate();
-  const params = useParams();
+  const navigate = useNavigate()
+  const params = useParams()
 
   useEffect(() => {
     setEnd(false)
-    getAQuestion();
-  }, [completed]);
+    getAQuestion()
+  }, [completed])
 
   
   async function getAQuestion() {
     try {
-      const response = await Api.questionByDifficulty(`${params.difficulty}`);
-      setPreguntas(response);
+      const response = await Api.questionByDifficulty(`${params.difficulty}`)
+      setPreguntas(response)
       setCorrect("")
-      console.log(response);
+      console.log(response)
     } catch (error) {
-      console.error("Error fetching question:", error);
+      console.error("Error fetching question:", error)
     }
   }
 
@@ -35,7 +35,7 @@ function Question() {
 
   const handleResponse = (response, option) => {
     response.answer == true && 
-    (setCorrect(option) , setEnd(true), setTimeout(() => {setCompleted(!completed);}, 700))
+    (setCorrect(option) , setEnd(true), setTimeout(() => {setCompleted(!completed)}, 700))
   }
 
   return (
