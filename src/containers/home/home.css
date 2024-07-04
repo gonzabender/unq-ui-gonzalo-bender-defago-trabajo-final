@@ -1,32 +1,38 @@
 .preguntas {
     display: flex;
     flex-direction: column;
-    align-items: center;     /* Centers items horizontally within the column */
+    align-items: center;     
     flex-basis: 40%;
   }
   
   .preguntas button {
-    width: 200px;            /* Sets a fixed width for the buttons */
-    height: 50px;            /* Sets a fixed height for the buttons */
-    padding: 10px;           /* Adds padding inside the buttons */
-    margin: 5px 0;           /* Adds margin between buttons */
-    display: flex;           /* Enables flexbox layout inside buttons */
-    justify-content: center; /* Centers text horizontally */
-    align-items: center;     /* Centers text vertically */
-    text-align: center;      /* Centers text alignment */
-    white-space: nowrap;     /* Prevents text from wrapping to the next line */   
-    text-overflow: ellipsis; /* Adds ellipsis (...) if text is too long */
+    width: 200px;       
+    height: 50px;            
+    padding: 10px;           
+    margin: 5px 0;           
+    display: flex;           
+    justify-content: center;
+    align-items: center;     
+    text-align: center;     
+    white-space: nowrap;    
+    text-overflow: ellipsis; 
   }
   .container {
+
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centers items horizontally */
-    align-items: center;     /* Centers items vertically */
+    justify-content: center; 
+    align-items: center;
      height: 100vh;           
     width: 100vw;        
 
   }
   
+  .title {
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: large;
+  }
   .logo {
     height: 6em;
     padding: 1.5em;
@@ -40,14 +46,7 @@
     filter: drop-shadow(0 0 2em #61dafbaa);
   }
   
-  @keyframes logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
+ 
   
   @media (prefers-reduced-motion: no-preference) {
     a:nth-of-type(2) .logo {

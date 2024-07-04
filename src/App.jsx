@@ -4,6 +4,7 @@ import Api from "./Api";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./containers/home/home";
 import Question from "./containers/question/question";
+import Results from "./containers/results/results";
 
 function App() {
   
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage/>}/>
           <Route path="/question/:difficulty" element={<Question/>} />
+          <Route path="/results" element={<Results/>} />
       </Routes>
      </BrowserRouter>
     </>
