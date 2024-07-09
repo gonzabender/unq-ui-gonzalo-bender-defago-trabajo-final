@@ -1,33 +1,31 @@
 .preguntas {
     display: flex;
-    flex-direction: column;
+   
     align-items: center;
     text-align: center;
-    flex-basis: 40%;
     text-overflow: ellipsis;
   }
-  
+  .questionButton{
+    width: fit-content;
+  }
   .preguntas button {
-    width: 450px;
+    width: 850px;
     height: 50px;
     padding: 10px;
     margin: 5px 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    white-space: nowrap; 
     text-overflow: ellipsis;
   }
-  .container {
+  .container-question {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centers items horizontally */
-    align-items: center;     /* Centers items vertically */
+    justify-content: center;
+    align-items: center;
      height: 100vh;           
-    width: 100vw;             
+    width: 100vw;               
   }
 
-  .logo {
+  /* .logo {
     height: 6em;
     padding: 1.5em;
     will-change: filter;
@@ -49,4 +47,4 @@
   
   .card {
     padding: 2em;
-  }
+  } */

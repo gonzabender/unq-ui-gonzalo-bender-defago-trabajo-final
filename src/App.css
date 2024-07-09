@@ -1,7 +1,7 @@
 
 
 
-.preguntas {
+/* .preguntas {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,8 +19,8 @@
   text-align: center;
   white-space: nowrap; 
   text-overflow: ellipsis;
-}
-.container {
+} */
+/* .container {
   background-image: linear-gradient(rgb(0, 204, 255), rgb(0, 110, 255));
   display: flex;
   flex-direction: column;
@@ -28,8 +28,8 @@
   align-items: center;
    height: 100vh;           
   width: 100vw;             
-}
-
+} */
+/* 
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -65,3 +65,4 @@
 .read-the-docs {
   color: #888;
 }
+ */

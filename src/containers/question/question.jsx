@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./question.css"
 import Api from "../../Api";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -54,11 +55,11 @@ function Question() {
   }
   return (
     <>{ current < 10 ?
-      <div className="container">
+      <div className="container-question">
         <p className="title">{preguntas.length > 0 ? preguntas[current].question : "Loading"}</p>
         <p>{"Difficulty: "} {`${params.difficulty}`}</p>
         <div className="preguntas">
-          <button style={"option1" == correct ? { background: "green" } : {}}
+          <button  style={"option1" == correct ? { background: "green" } : {}}
             onClick={() => {
               sendAnswer(`${preguntas[current].id}`, `option1`);
             }}
