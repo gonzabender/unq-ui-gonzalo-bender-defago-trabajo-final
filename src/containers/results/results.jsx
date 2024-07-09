@@ -8,14 +8,19 @@ export default function Results() {
 
   useEffect(() => {
     setCorrect(localStorage.getItem("counter"))
+    localStorage.setItem("counter", 0)
     }, [])
   
+    const reset = () => {
+      localStorage.removeItem("counter")
+      navigate("/")
+    }
   return (
     <>
       <div className="container results">
         <b>You completed the game!</b>
         <b>You answered {correct}/10 questions right! </b>
-        <button onClick={() => navigate("/")}>Go back</button>
+        <button onClick={() => reset()}>Go back</button>
       </div>
     </>
   );

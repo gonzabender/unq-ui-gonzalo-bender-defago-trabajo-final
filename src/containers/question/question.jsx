@@ -14,11 +14,12 @@ function Question() {
   
   useEffect(() => {
     getAQuestion();
-
-  }, []);
+    
+  }, [params]);
 
   useEffect(() => {
     setCorrect("");
+    localStorage.setItem("counter",right)
   }, [current]);
 
   async function getAQuestion() {
@@ -43,11 +44,14 @@ function Question() {
           setCompleted(!completed);
           setRight(right + 1)
           setCurrent((current) => current + 1);
-          localStorage.setItem("counter",right)
-        }, 100))
+        }, 0))
       : setCurrent((current) => current + 1);
   };
 
+  const reset = () => {
+    localStorage.removeItem("counter")
+    navigate("/")
+  }
   return (
     <>{ current < 10 ?
       <div className="container">
@@ -81,7 +85,7 @@ function Question() {
           >{preguntas[current]?.option4}
           </button>
         </div>
-        <button onClick={() => navigate("/")}>Go back</button>
+        <button onClick={() => reset()}>Go back</button>
       </div>: navigate("/results")}
     </>
   );
