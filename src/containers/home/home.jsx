@@ -22,20 +22,12 @@ function Homepage() {
   }
   return (
     <>
-      <div
-        style={{
-          backgroundImage: `url(${Fondo})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "100vh",
-          width: "100%",
-        }}
-      >
+      <div className="background-home" >
         <div className="container">
           <p className="title">Select difficulty</p>
           <div className="preguntas">
             {dif.map((difi) => (
-              <button onClick={() => navigate(`/question/${difi}`)}>
+              <button className="diff" onClick={() => navigate(`/question/${difi}`)}>
                 {difi}
               </button>
             ))}

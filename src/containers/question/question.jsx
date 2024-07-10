@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./question.css"
 import Api from "../../Api";
 import { useNavigate, useParams } from "react-router-dom";
-
+import Fondo from "../../assets/images/fondo-preguntas.jpg"
 function Question() {
   const [preguntas, setPreguntas] = useState([]);
   const [completed, setCompleted] = useState(false);
@@ -32,8 +32,9 @@ function Question() {
     }
   }
 
-  const sendAnswer = (questionId, option) => {
-    Api.answerQuestion(questionId, option)
+  const sendAnswer = (option) => {
+    const question = preguntas[current].id
+    Api.answerQuestion(question, option)
       .then((response) => handleResponse(response.data, option))
       .catch((response) => "Error" + response);
   };
@@ -45,7 +46,7 @@ function Question() {
           setCompleted(!completed);
           setRight(right + 1)
           setCurrent((current) => current + 1);
-        }, 0))
+        }, 700))
       : setCurrent((current) => current + 1);
   };
 
@@ -56,37 +57,23 @@ function Question() {
   return (
     <>{ current < 10 ?
       <div className="container-question">
-        <p className="title">{preguntas.length > 0 ? preguntas[current].question : "Loading"}</p>
-        <p>{"Difficulty: "} {`${params.difficulty}`}</p>
+        <div className="title-contaienr">
+        <p className="title-question">{"Difficulty: "} {`${params.difficulty}`}</p>
+        <p className="title-question">{preguntas.length > 0 ? preguntas[current].question : "Loading"}</p>
+        </div>
         <div className="preguntas">
-          <button  style={"option1" == correct ? { background: "green" } : {}}
-            onClick={() => {
-              sendAnswer(`${preguntas[current].id}`, `option1`);
-            }}
-          >{preguntas[current]?.option1}</button>
-          <button
-            style={"option2" == correct ? { background: "green" } : {}}
-            onClick={() => {
-              sendAnswer(`${preguntas[current].id}`, `option2`);
-            }}
-          >{preguntas[current]?.option2}
+          <button className="q-button" style={"option1" == correct ? { background: "green" } : {}} onClick={() => {sendAnswer(`option1`)}}>
+            {preguntas[current]?.option1}</button>
+          <button className="q-button" style={"option2" == correct ? { background: "green" } : {}} onClick={() => {sendAnswer(`option2`)}}>
+            {preguntas[current]?.option2}</button>
+          <button className="q-button" style={"option3" == correct ? { background: "green" } : {}} onClick={() => {sendAnswer(`option3`)}}>
+            {preguntas[current]?.option3}
           </button>
-          <button
-            style={"option3" == correct ? { background: "green" } : {}}
-            onClick={() => {
-              sendAnswer(`${preguntas[current].id}`, `option3`);
-            }}
-          >{preguntas[current]?.option3}
-          </button>
-          <button
-            style={"option4" == correct ? { background: "green" } : {}}
-            onClick={() => {
-              sendAnswer(`${preguntas[current].id}`, `option4`);
-            }}
-          >{preguntas[current]?.option4}
+          <button className="q-button" style={"option4" == correct ? { background: "green" } : {}} onClick={() => {sendAnswer(`option4`)}}>
+            {preguntas[current]?.option4}
           </button>
         </div>
-        <button onClick={() => reset()}>Go back</button>
+        <button className="q-button" onClick={() => reset()}>Go back</button>
       </div>: navigate("/results")}
     </>
   );
